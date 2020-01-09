@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class='use-all-space'>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="opmaak.css">
+    <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel='stylesheet' type='text/css' href='sdk/map.css' />
+<!--    <link rel='stylesheet' type='text/css' href='elements.css'>-->
+    <script type='text/javascript' src='js/form.js'></script>
+    <script src='sdk/tomtom.min.js'></script>
+    <style>
+        label {
+            display: flex;
+            align-items: center;
+            margin: 2px;
+        }
+        select {
+            flex: auto;
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body class='use-all-space'>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="d-flex flex-grow-1">
+        <span class="w-100 d-lg-none d-block"></span>
+        <a class="navbar-logo" href="#">DINGES</a>
+        <div class="w-100 text-right">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse flex-grow-1" id="myNavbar7">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="over.html">Over ons</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id='map' class='use-all-space'></div>
+<div class="container">
+    <div class="row contact">
+        <div class="col-sm-6">
+            <h2>Openingstijden</h2>
+            <p>maandag - gesloten</p>
+            <p>dinsdag - 11:45 tot 21:00</p>
+            <p>woensdag - 11:45 tot 21:00</p>
+            <p>donderdag - 11:45 tot 21:00</p>
+            <p>vrijdag - 11:45 tot 22:00</p>
+            <p>zaterdag - 11:45 tot 22:00</p>
+            <p>zondag - 13:00 tot 21:00</p>
+            <br>
+            <h2>Adres</h2>
+            <p>Factorij 54 </p>
+            <p>3071 AV Rotterdam</p>
+            <p>(op het plein bij Jumbo) </p>
+            <p>Tel: 010-7537433</p>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/folder.jpg">
+        </div>
+    </div>
+</div>
+<div class="footer-main bg-dark py-5 small">
+    <div class="footer container">
+        <p>© Cafetaria-Lunchroom Dinges 2019</p>
+        <a href="inlog.php">Admin</a>
+    </div>
+</div>
+<script>
+    // Define your product name and version
+    tomtom.setProductInfo('Codepen Examples', '4.47.6');
+    var map = tomtom.map('map', {
+        key: 'uVN0YMHYTVA7mf9xJ8vPTmEpsLk1yv1n',
+        source: 'vector',
+        container:'map',
+        center:[51.9107763,4.5010672],
+        zoom:15,
+        basePath: 'https://api.tomtom.com/maps-sdk-js/4.47.6/examples/sdk'
+    });
+    tomtom.L.circle([51.9107763,4.5010672], 20, {
+        color: 'red',
+        fillColor: 'red',
+        fillOpacity: 0.25
+    }).addTo(map);
+    var languageLabel = L.DomUtil.create('label');
+    languageLabel.innerHTML = 'Maps language';
+    var languageSelector = tomtom.languageSelector.getHtmlElement(tomtom.globalLocaleService, 'maps');
+    languageLabel.appendChild(languageSelector);
+    tomtom.controlPanel({
+        position: 'bottomright',
+        title: 'Settings',
+        collapsed: true,
+        closeOnMapClick: false
+    })
+        .addTo(map)
+        .addContent(languageLabel);
+
+
+</script>
+</body>
+</html>
